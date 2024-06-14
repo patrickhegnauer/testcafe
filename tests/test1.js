@@ -13,5 +13,5 @@ fixture('Getting Started')
 test('My first test', async t => {
     await setUserAgent('MyCustomUserAgent/1.0');
     await t
-        .click('#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll')
+        .click('#level-one-link-0')
 });
