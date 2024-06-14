@@ -23,4 +23,4 @@ jobs:
         run: npm install testcafe
 
       - name: Run TestCafe tests
-        run: npx testcafe chrome:headless ./tests
+        run: npx testcafe chrome:headless:userAgent=testCafe/2.0 ./tests
