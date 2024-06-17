@@ -35,7 +35,7 @@ jobs:
       id: create_session
       run: |
         access_token=${{ steps.get_access_token.outputs.access_token }}
-        response=$curl 'https://graffias.adobe.io/graffias/graphql' \
+        response=$(curl -X POST 'https://graffias.adobe.io/graffias/graphql' \
           -H 'Content-Type: application/json' \
           -H 'x-gw-ims-org-id: 1413337B54E6EADE0A4C98A1@AdobeOrg' \
           -H 'x-api-key: 0dfb38b3ec284c44a890c0662ecc3e3c' \
