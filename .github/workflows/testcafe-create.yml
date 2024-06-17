@@ -41,11 +41,11 @@ jobs:
           -H 'x-api-key: 0dfb38b3ec284c44a890c0662ecc3e3c' \
           -H 'Authorization: Bearer '$access_token'' \
           --data-binary '{"query":"mutation createSession($session: SessionInput!) { createSession(session: $session) { orgId uuid name link token }}","variables":{"session":{"name":"test-github","link":"testUrl://default"}}}')
-        session_id=$(echo $response | jq -r '.uuid')
-        echo "session_id=$session_id" >> $GITHUB_OUTPUT
+        uuid=$(echo $response | jq -r '.data.createSession.uuid')
+        echo "SESSION_ID=$uuid" >> $GITHUB_ENV
 
     - name: Run TestCafe tests
       run: |
         SESSION_ID=${{ steps.create_session.outputs.session_id }}
         echo "Session ID: $SESSION_ID"
-        npx testcafe chrome tests/ --env.session_id=$SESSION_ID
+        run: npx testcafe chrome:headless:userAgent=testCafe/2.0 ./tests/ --env.session_id=$SESSION_ID
