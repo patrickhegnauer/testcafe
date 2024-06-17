@@ -1,10 +1,11 @@
 import { Selector, ClientFunction } from 'testcafe';
 
+    const sessionId = process.env.SESSION_ID;
     // List of URLs to crawl
     const urls = [
-        'https://www.css.ch/de/privatkunden.html?adb_validation_sessionid=ce2dfadc-2cf7-4d1c-ba6e-623a136c7805',
-        'https://www.css.ch/de/privatkunden/meine-gesundheit/ernaehrung/ernaehrungswissen/zitronenwasser.html?adb_validation_sessionid=ce2dfadc-2cf7-4d1c-ba6e-623a136c7805',
-        'https://www.css.ch/de/privatkunden/schnell-erledigt.html?adb_validation_sessionid=ce2dfadc-2cf7-4d1c-ba6e-623a136c7805',
+        'https://www.css.ch/de/privatkunden.html?adb_validation_sessionid='+sessionId,
+        'https://www.css.ch/de/privatkunden/meine-gesundheit/ernaehrung/ernaehrungswissen/zitronenwasser.html?adb_validation_sessionid='+sessionId,
+        'https://www.css.ch/de/privatkunden/schnell-erledigt.html?adb_validation_sessionid='+sessionId,
         // Add more URLs as needed
     ];
 
