@@ -25,7 +25,7 @@ jobs:
     - name: Get Adobe Access Token
       id: get_access_token
       run: |
-        response=$(curl -X POST 'https://ims-na1.adobelogin.com/ims/token/v3' \
+        response= $(curl -X POST 'https://ims-na1.adobelogin.com/ims/token/v3' \
           -H 'Content-Type: application/x-www-form-urlencoded' \
           -d 'grant_type=client_credentials&client_id=0dfb38b3ec284c44a890c0662ecc3e3c&client_secret=p8e-j2MUYUt-3X-qnXJBEDQpbF5rF9eKRU2l&scope=openid,AdobeID,additional_info.projectedProductContext,assurance_manage_sessions,assurance_read_events,assurance_read_annotations,assurance_read_session_annotations,assurance_read_plugins,assurance_read_clients')
         access_token=$(echo $response | jq -r '.access_token')
@@ -35,7 +35,7 @@ jobs:
       id: create_session
       run: |
         access_token=${{ steps.get_access_token.outputs.access_token }}
-        response=$curl 'https://graffias.adobe.io/graffias/graphql' \
+        response= $curl 'https://graffias.adobe.io/graffias/graphql' \
           -H 'Content-Type: application/json' \
           -H 'x-gw-ims-org-id: 1413337B54E6EADE0A4C98A1@AdobeOrg' \
           -H 'x-api-key: 0dfb38b3ec284c44a890c0662ecc3e3c' \
