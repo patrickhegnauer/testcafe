@@ -30,6 +30,7 @@ jobs:
           -d 'grant_type=client_credentials&client_id=0dfb38b3ec284c44a890c0662ecc3e3c&client_secret=p8e-j2MUYUt-3X-qnXJBEDQpbF5rF9eKRU2l&scope=openid,AdobeID,additional_info.projectedProductContext,assurance_manage_sessions,assurance_read_events,assurance_read_annotations,assurance_read_session_annotations,assurance_read_plugins,assurance_read_clients')
         access_token=$(echo $response | jq -r '.access_token')
         echo "::set-output name=access_token::$access_token"
+        echo "access_token=$access_token" >> $GITHUB_OUTPUT
 
     - name: Create Adobe Assurance Session
       id: create_session
@@ -41,10 +42,11 @@ jobs:
           -H 'x-api-key: 0dfb38b3ec284c44a890c0662ecc3e3c' \
           -H 'Authorization: Bearer '$access_token'' \
           --data-binary '{"query":"mutation createSession($session: SessionInput!) { createSession(session: $session) { orgId uuid name link token }}","variables":{"session":{"name":"test-github","link":"testUrl://default"}}}'
-        echo "::set-output name=session_id::$(echo $response | jq -r '.uuid')"
+        session_id=$(echo $response | jq -r '.uuid')
+        echo "session_id=$session_id" >> $GITHUB_OUTPUT
 
     - name: Run TestCafe tests
       run: |
-        SESSION_ID=${{ steps.create_session.outputs.uuid }}
+        SESSION_ID=${{ steps.create_session.outputs.session_id }}
         echo "Session ID: $SESSION_ID"
         npx testcafe chrome tests/ --env.session_id=$SESSION_ID
