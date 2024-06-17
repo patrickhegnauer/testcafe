@@ -10,6 +10,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      SESSION_NAME: "automated-session-test-$(date +'%Y%m%d%H%M%S')"
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -40,7 +43,7 @@ jobs:
           -H 'x-gw-ims-org-id: 1413337B54E6EADE0A4C98A1@AdobeOrg' \
           -H 'x-api-key: 0dfb38b3ec284c44a890c0662ecc3e3c' \
           -H 'Authorization: Bearer '$access_token'' \
-          --data-binary '{"query":"mutation createSession($session: SessionInput!) { createSession(session: $session) { orgId uuid name link token }}","variables":{"session":{"name":"test-github","link":"testUrl://default"}}}')
+          --data-binary '{"query":"mutation createSession($session: SessionInput!) { createSession(session: $session) { orgId uuid name link token }}","variables":{"session":{"name":"'"${{ env.SESSION_NAME }} "'","link":"https://www.css.ch"}}}')
         uuid=$(echo $response | jq -r '.data.createSession.uuid')
         echo "SESSION_ID=$uuid" >> $GITHUB_ENV
 
