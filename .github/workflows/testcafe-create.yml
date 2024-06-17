@@ -20,7 +20,7 @@ jobs:
         node-version: '18'
 
     - name: Install dependencies
-      run: npm install
+      run: npm install testcafe
 
     - name: Get Adobe Access Token
       id: get_access_token
