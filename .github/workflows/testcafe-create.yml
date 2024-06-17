@@ -1,4 +1,4 @@
-name: TestCafe Tests
+name: Automated css.ch Test
 
 on:
   schedule:
