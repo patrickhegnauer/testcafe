@@ -1,6 +1,7 @@
 import { Selector, ClientFunction } from 'testcafe';
 
 const sessionId = process.env.SESSION_ID_CALC;
+const testURL = 'https://calculator.css.ch/de/personen?adb_validation_sessionid='+sessionId
 // Define a ClientFunction to access shadow DOM
 const getShadowElement = ClientFunction((selector, element) => {
     const shadowHost = document.querySelector(selector);
@@ -22,7 +23,7 @@ const setUserAgent = ClientFunction(userAgent => {
 fixture('Calculator')/*
     .page `https://calculator.css.ch/de/personen?adb_validation_sessionid=`+sessionId;
 */
-test.page `https://calculator.css.ch/de/personen?adb_validation_sessionid=`+sessionId('PUMA Personen', async t => {
+test.page(testURL)('PUMA Personen', async t => {
     // Selector for the overlay button
     await setUserAgent('MyCustomUserAgent/2.0');
  /*
