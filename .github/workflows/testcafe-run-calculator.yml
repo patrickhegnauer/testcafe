@@ -1,4 +1,4 @@
-name: Automated calcualtor Test
+name: Automated calculator Test
 
 on:
   schedule:
