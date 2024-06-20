@@ -111,6 +111,6 @@ test.page `https://calculator.css.ch/de/personen?adb_validation_sessionid=`+sess
         await t.expect(fieldExists).ok();
         await t.click(nord)
         await t
-            .navigateTo('https://calculator.css.ch/de/angebot?adb_validation_sessionid='++sessionId);
+            .navigateTo('https://calculator.css.ch/de/angebot?adb_validation_sessionid='+sessionId);
         await t.wait(2000);
 });
