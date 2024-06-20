@@ -40,11 +40,6 @@ test.page(startURL)('Travel Journey', async t => {
     .navigateTo(testURL);
     await t.wait(2000);
 
-    const overlayButton = Selector('#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll');
-
-    // Click the overlay button to dismiss it
-    await t.click(overlayButton);
-
     for (const url of urls) {
             //set useragent
             await setUserAgent('MyCustomUserAgent/2.0');
