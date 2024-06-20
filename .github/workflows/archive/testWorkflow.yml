@@ -1,1 +1,23 @@
+name: Run TestCafe Tests - Manually
 
+on:
+  workflow_dispatch:  # This allows manual triggering
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install testcafe
+
+      - name: Run TestCafe tests
+        run: npx testcafe chrome:headless:userAgent=testCafe/2.0 ./tests
