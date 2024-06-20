@@ -1,6 +1,6 @@
 import { Selector, ClientFunction } from 'testcafe';
 
-const sessionId = 'ec464ded-add6-431f-8967-2e80e418c556'
+const sessionId = process.env.SESSION_ID_TRAVEL;
 const startURL = 'https://travel.css.ch/start?package=economy'
 const testURL = 'https://travel.css.ch/de/angaben?adb_validation_sessionid='+sessionId
 
