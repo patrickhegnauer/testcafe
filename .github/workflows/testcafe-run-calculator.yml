@@ -45,10 +45,10 @@ jobs:
           -H 'Authorization: Bearer '$access_token'' \
           --data-binary '{"query":"mutation createSession($session: SessionInput!) { createSession(session: $session) { orgId uuid name link token }}","variables":{"session":{"name":"'"${{ env.SESSION_NAME }} "'","link":"https://www.css.ch"}}}')
         uuid=$(echo $response | jq -r '.data.createSession.uuid')
-        echo "SESSION_ID=$uuid" >> $GITHUB_ENV
+        echo "SESSION_ID_CALC=$uuid" >> $GITHUB_ENV
 
     - name: Run TestCafe tests
       run: |
-        SESSION_ID=${{ env.SESSION_ID }}
-        echo "Session ID: $SESSION_ID"
-        npx testcafe chrome:headless:userAgent=testCafe/2.0 ./tests/calculator.js --env.session_id=$SESSION_ID
+        SESSION_ID_CALC=${{ env.SESSION_ID_CALC }}
+        echo "Session ID: $SESSION_ID_CALC"
+        npx testcafe chrome:headless:userAgent=testCafe/2.0 ./tests/calculator.js --env.session_id=$SESSION_ID_CALC
