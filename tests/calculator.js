@@ -24,11 +24,12 @@ fixture('Calculator')/*
 test.page `https://calculator.css.ch/de/personen?adb_validation_sessionid=b1e9b49e-a917-410e-9724-159d1ebf4771`('PUMA Personen', async t => {
     // Selector for the overlay button
     await setUserAgent('MyCustomUserAgent/2.0');
+ /*
     const overlayButton = Selector('#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll');
  
     // Click the overlay button to dismiss it
     await t.click(overlayButton);
- 
+ */
     // Define arrays for selectors and elements
     const selectors = [
         '#new-person-form',
