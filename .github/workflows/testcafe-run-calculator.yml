@@ -51,4 +51,4 @@ jobs:
       run: |
         SESSION_ID=${{ env.SESSION_ID }}
         echo "Session ID: $SESSION_ID"
-        npx testcafe chrome:headless:userAgent=testCafe/2.0 ./tests/ --env.session_id=$SESSION_ID
+        npx testcafe chrome:headless:userAgent=testCafe/2.0 ./tests/calculator.js --env.session_id=$SESSION_ID
