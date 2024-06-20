@@ -1,5 +1,6 @@
 import { Selector, ClientFunction } from 'testcafe';
- 
+
+const sessionId = process.env.SESSION_ID_CALC;
 // Define a ClientFunction to access shadow DOM
 const getShadowElement = ClientFunction((selector, element) => {
     const shadowHost = document.querySelector(selector);
@@ -19,9 +20,9 @@ const setUserAgent = ClientFunction(userAgent => {
     });
  
 fixture('Calculator')/*
-    .page `https://calculator.css.ch/de/personen?adb_validation_sessionid=b1e9b49e-a917-410e-9724-159d1ebf4771`;
+    .page `https://calculator.css.ch/de/personen?adb_validation_sessionid=`+sessionId;
 */
-test.page `https://calculator.css.ch/de/personen?adb_validation_sessionid=b1e9b49e-a917-410e-9724-159d1ebf4771`('PUMA Personen', async t => {
+test.page `https://calculator.css.ch/de/personen?adb_validation_sessionid=`+sessionId('PUMA Personen', async t => {
     // Selector for the overlay button
     await setUserAgent('MyCustomUserAgent/2.0');
  /*
@@ -97,7 +98,7 @@ test.page `https://calculator.css.ch/de/personen?adb_validation_sessionid=b1e9b4
     const est = Selector('#product-MEDIZINISCHER_TELEFONDIENST');
         await t.click(est)
         await t
-            .navigateTo('https://calculator.css.ch/de/produkte?adb_validation_sessionid=b1e9b49e-a917-410e-9724-159d1ebf4771');
+            .navigateTo('https://calculator.css.ch/de/produkte?adb_validation_sessionid='+sessionId);
         await t.wait(2000);
  
    
@@ -110,6 +111,6 @@ test.page `https://calculator.css.ch/de/personen?adb_validation_sessionid=b1e9b4
         await t.expect(fieldExists).ok();
         await t.click(nord)
         await t
-            .navigateTo('https://calculator.css.ch/de/angebot?adb_validation_sessionid=b1e9b49e-a917-410e-9724-159d1ebf4771');
+            .navigateTo('https://calculator.css.ch/de/angebot?adb_validation_sessionid='++sessionId);
         await t.wait(2000);
 });
